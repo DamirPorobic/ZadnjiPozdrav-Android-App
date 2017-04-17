@@ -58,7 +58,7 @@ public class ObituaryDataSource {
         values.put(CustomSQLiteHelper.COLUMN_TEXT, text);
         values.put(CustomSQLiteHelper.COLUMN_FUNERALDATE, funeralDate);
         values.put(CustomSQLiteHelper.COLUMN_FUNERALTIME, funeralTime);
-        values.put(CustomSQLiteHelper.COLUMN_PICTURE, picture);
+//        values.put(CustomSQLiteHelper.COLUMN_PICTURE, picture);
         values.put(CustomSQLiteHelper.COLUMN_RELIGION, religion);
         values.put(CustomSQLiteHelper.COLUMN_CEMETERYNAME, cemeteryName);
         values.put(CustomSQLiteHelper.COLUMN_CEMETERYADDRESS, cemeteryAddress);
