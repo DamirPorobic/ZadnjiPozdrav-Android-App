@@ -20,10 +20,8 @@ public class Obituary {
     private Date mFuneralTime;
     private Bitmap mPicture;
     private String mReligion;
-    private String mCemeteryName;
-    private String mCemeteryAddress;
-    private double mCemeteryLat;
-    private double mCemeteryLon;
+    private Cemetery mCemetery;
+    private Borough mBorough;
 
     public long getId() {
         return mId;
@@ -144,35 +142,19 @@ public class Obituary {
         mReligion = religion;
     }
 
-    public String getCemeteryName() {
-        return mCemeteryName;
+    public Cemetery getCemetery() {
+        return mCemetery;
     }
 
-    public void setCemeteryName(String cemeteryName) {
-        mCemeteryName = cemeteryName;
+    public void setCemetery(Cemetery cemetery) {
+        mCemetery = cemetery;
     }
 
-    public String getCemeteryAddress() {
-        return mCemeteryAddress;
+    public Borough getBorough() {
+        return mBorough;
     }
 
-    public void setCemeteryAddress(String cemeteryAddress) {
-        mCemeteryAddress = cemeteryAddress;
-    }
-
-    public double getCemeteryLat() {
-        return mCemeteryLat;
-    }
-
-    public void setCemeteryLat(double cemeteryLat) {
-        mCemeteryLat = cemeteryLat;
-    }
-
-    public double getCemeteryLon() {
-        return mCemeteryLon;
-    }
-
-    public void setCemeteryLon(double cemeteryLon) {
-        mCemeteryLon = cemeteryLon;
+    public void setBorough(Borough borough) {
+        mBorough = borough;
     }
 }

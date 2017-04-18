@@ -11,77 +11,126 @@ import java.util.List;
 
 public class DataSource {
 
-    private SQLiteDatabase mDataBase;
-    private DatabaseHelper mDbHelper;
-    private String[] mAllColumns = {
-            DatabaseHelper.COLUMN_ID,
-            DatabaseHelper.COLUMN_NAME,
-            DatabaseHelper.COLUMN_FAMILYNAME,
-            DatabaseHelper.COLUMN_FATHERSNAME,
-            DatabaseHelper.COLUMN_MAIDENNAME,
-            DatabaseHelper.COLUMN_BIRTHDATE,
-            DatabaseHelper.COLUMN_DEATHDATE,
-            DatabaseHelper.COLUMN_TEXT,
-            DatabaseHelper.COLUMN_FUNERALDATE,
-            DatabaseHelper.COLUMN_FUNERALTIME,
-            DatabaseHelper.COLUMN_PICTURE,
-            DatabaseHelper.COLUMN_RELIGION,
-            DatabaseHelper.COLUMN_CEMETERYNAME,
-            DatabaseHelper.COLUMN_CEMETERYADDRESS,
-            DatabaseHelper.COLUMN_CEMETERYLAT,
-            DatabaseHelper.COLUMN_CEMETERYLON };
+    private SQLiteDatabase mDatabase;
+    private DatabaseHelper mDBHelper;
+
+    private String[] mObituaryColumns = {
+            DatabaseHelper.COL_OB_ID,
+            DatabaseHelper.COL_OB_NAME,
+            DatabaseHelper.COL_OB_FAMILYNAME,
+            DatabaseHelper.COL_OB_FATHERSNAME,
+            DatabaseHelper.COL_OB_MAIDENNAME,
+            DatabaseHelper.COL_OB_BIRTHDATE,
+            DatabaseHelper.COL_OB_DEATHDATE,
+            DatabaseHelper.COL_OB_TEXT,
+            DatabaseHelper.COL_OB_FUNERALDATE,
+            DatabaseHelper.COL_OB_FUNERALTIME,
+            DatabaseHelper.COL_OB_PICTURE,
+            DatabaseHelper.COL_OB_RELIGION,
+            DatabaseHelper.COL_OB_CEMETERY_ID,
+            DatabaseHelper.COL_OB_BOROUGH_ID};
+
+    private String[] mCemeteryColumns = {
+            DatabaseHelper.COL_CE_ID,
+            DatabaseHelper.COL_CE_NAME,
+            DatabaseHelper.COL_CE_LAT,
+            DatabaseHelper.COL_CE_LON};
+
+    private String[] mBoroughColumns = {
+            DatabaseHelper.COL_BO_ID,
+            DatabaseHelper.COL_BO_NAME};
 
     public DataSource(Context context) {
-        mDbHelper = new DatabaseHelper(context);
+        mDBHelper = new DatabaseHelper(context);
     }
 
     public void open() throws SQLException {
-        mDataBase = mDbHelper.getWritableDatabase();
+        mDatabase = mDBHelper.getWritableDatabase();
     }
 
     public void close() {
-        mDbHelper.close();
+        mDBHelper.close();
     }
 
     public Obituary createObituary(String name, String familyName, String fathersName,
                                    String maidenName, long birthDate, long deathDate, String text,
                                    long funeralDate, long funeralTime, byte[] picture,
-                                   String religion, String cemeteryName, String cemeteryAddress,
-                                   double cemeteryLat, double cemeteryLon) {
+                                   String religion, long cemeteryId, long boroughId) {
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_NAME, name);
-        values.put(DatabaseHelper.COLUMN_FAMILYNAME, familyName);
-        values.put(DatabaseHelper.COLUMN_FATHERSNAME, fathersName);
-        values.put(DatabaseHelper.COLUMN_MAIDENNAME, maidenName);
-        values.put(DatabaseHelper.COLUMN_BIRTHDATE, birthDate);
-        values.put(DatabaseHelper.COLUMN_DEATHDATE, deathDate);
-        values.put(DatabaseHelper.COLUMN_TEXT, text);
-        values.put(DatabaseHelper.COLUMN_FUNERALDATE, funeralDate);
-        values.put(DatabaseHelper.COLUMN_FUNERALTIME, funeralTime);
-        values.put(DatabaseHelper.COLUMN_PICTURE, picture);
-        values.put(DatabaseHelper.COLUMN_RELIGION, religion);
-        values.put(DatabaseHelper.COLUMN_CEMETERYNAME, cemeteryName);
-        values.put(DatabaseHelper.COLUMN_CEMETERYADDRESS, cemeteryAddress);
-        values.put(DatabaseHelper.COLUMN_CEMETERYLAT, cemeteryLat);
-        values.put(DatabaseHelper.COLUMN_CEMETERYLON, cemeteryLon);
+        values.put(DatabaseHelper.COL_OB_NAME, name);
+        values.put(DatabaseHelper.COL_OB_FAMILYNAME, familyName);
+        values.put(DatabaseHelper.COL_OB_FATHERSNAME, fathersName);
+        values.put(DatabaseHelper.COL_OB_MAIDENNAME, maidenName);
+        values.put(DatabaseHelper.COL_OB_BIRTHDATE, birthDate);
+        values.put(DatabaseHelper.COL_OB_DEATHDATE, deathDate);
+        values.put(DatabaseHelper.COL_OB_TEXT, text);
+        values.put(DatabaseHelper.COL_OB_FUNERALDATE, funeralDate);
+        values.put(DatabaseHelper.COL_OB_FUNERALTIME, funeralTime);
+        values.put(DatabaseHelper.COL_OB_PICTURE, picture);
+        values.put(DatabaseHelper.COL_OB_RELIGION, religion);
+        values.put(DatabaseHelper.COL_OB_CEMETERY_ID, cemeteryId);
+        values.put(DatabaseHelper.COL_OB_BOROUGH_ID, boroughId);
 
-        long insertedId = mDataBase.insert(DatabaseHelper.TABLE_OBITUARIES, null, values);
-        Cursor cursor = mDataBase.query(DatabaseHelper.TABLE_OBITUARIES, mAllColumns,
-                DatabaseHelper.COLUMN_ID + " = " + insertedId, null, null, null, null);
+        long insertedId = mDatabase.insert(DatabaseHelper.TABLE_OBITUARIES, null, values);
+        return getObituary(insertedId);
+    }
+
+    public Cemetery createCemetery(long id, String name, String address, double lat, double lon) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COL_CE_ID, id);
+        values.put(DatabaseHelper.COL_CE_NAME, name);
+        values.put(DatabaseHelper.COL_CE_ADDRESS, address);
+        values.put(DatabaseHelper.COL_CE_LAT, lat);
+        values.put(DatabaseHelper.COL_CE_LON, lon);
+
+        long insertedId = mDatabase.insert(DatabaseHelper.TABLE_CEMETERIES, null, values);
+        return getCemetery(insertedId);
+    }
+
+    public Borough createBorough(long id, String name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COL_BO_ID, id);
+        values.put(DatabaseHelper.COL_BO_NAME, name);
+
+        long insertedId = mDatabase.insert(DatabaseHelper.TABLE_BOROUGHS, null, values);
+        return getBorough(insertedId);
+    }
+
+    public Obituary getObituary(long id) {
+        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_OBITUARIES, mObituaryColumns,
+                DatabaseHelper.COL_OB_ID + " = " + id, null, null, null, null);
         cursor.moveToFirst();
-        Obituary newObituary = cursorToObituary(cursor);
+        Obituary obituary = cursorToObituary(cursor);
         cursor.close();
-        return newObituary;
+        return obituary;
+    }
+
+    public Cemetery getCemetery(long id) {
+        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_CEMETERIES, mCemeteryColumns,
+                DatabaseHelper.COL_CE_ID + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+        Cemetery cemetery = cursorToCemetery(cursor);
+        cursor.close();
+        return cemetery;
+    }
+
+    public Borough getBorough(long id) {
+        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_BOROUGHS, mBoroughColumns,
+                DatabaseHelper.COL_BO_ID + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+        Borough borough = cursorToBorough(cursor);
+        cursor.close();
+        return borough;
     }
 
     public void deleteObituary(Obituary obituary) {
         long id = obituary.getId();
-        mDataBase.delete(DatabaseHelper.TABLE_OBITUARIES, DatabaseHelper.COLUMN_ID + " = " + id, null);
+        mDatabase.delete(DatabaseHelper.TABLE_OBITUARIES, DatabaseHelper.COL_OB_ID + " = " + id, null);
     }
 
     public List<Obituary> getAllObituaries() {
         List<Obituary> obituaries = new ArrayList<Obituary>();
-        Cursor cursor = mDataBase.query(DatabaseHelper.TABLE_OBITUARIES, mAllColumns, null,
+        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_OBITUARIES, mObituaryColumns, null,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -109,11 +158,28 @@ public class DataSource {
         obituary.setFuneralTime(cursor.getLong(9));
         obituary.setPicture(cursor.getBlob(10));
         obituary.setReligion(cursor.getString(11));
-        obituary.setCemeteryName(cursor.getString(12));
-        obituary.setCemeteryAddress(cursor.getString(13));
-        obituary.setCemeteryLat(cursor.getDouble(14));
-        obituary.setCemeteryLon(cursor.getDouble(15));
+        obituary.setCemetery(getCemetery(cursor.getLong(12)));
+        obituary.setBorough(getBorough(cursor.getLong(13)));
 
         return obituary;
+    }
+
+    private Cemetery cursorToCemetery(Cursor cursor) {
+        Cemetery cemetery = new Cemetery();
+        cemetery.setId(cursor.getLong(0));
+        cemetery.setName(cursor.getString(1));
+        cemetery.setAddress(cursor.getString(2));
+        cemetery.setLat(cursor.getLong(3));
+        cemetery.setLon(cursor.getLong(4));
+
+        return cemetery;
+    }
+
+    private Borough cursorToBorough(Cursor cursor) {
+        Borough borough = new Borough();
+        borough.setId(cursor.getLong(0));
+        borough.setName(cursor.getString(1));
+
+        return borough;
     }
 }
