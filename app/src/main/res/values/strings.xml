@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZadnjiPozdrav</string>
+    <string name="date_format">dd.MM.yyyy</string>
+    <string name="time_format">mm:HH</string>
 </resources>

@@ -8,16 +8,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CustomArrayAdapter extends ArrayAdapter<Obituary>{
     private final Context mContext;
     private final List<Obituary> mValues;
+    private final SimpleDateFormat mDateFormat;
 
     public CustomArrayAdapter(Context context, List<Obituary> values){
         super(context, -1, values);
         mContext = context;
         mValues = values;
+        mDateFormat = new SimpleDateFormat(mContext.getString(R.string.date_format));
     }
 
     @Override
@@ -31,9 +35,9 @@ public class CustomArrayAdapter extends ArrayAdapter<Obituary>{
                 + mValues.get(position).getFathersName() + ") "
                 + mValues.get(position).getFamilyName());
 
-        textViewDates.setText(mValues.get(position).getBirthDate().toString()
+        textViewDates.setText(mDateFormat.format(mValues.get(position).getBirthDate())
                 + " - "
-                + mValues.get(position).getDeathDate().toString());
+                + mDateFormat.format(mValues.get(position).getDeathDate()));
 
         if (mValues.get(position).getPicture() == null) {
             imageViewPicture.setImageResource(R.mipmap.ic_launcher_round);

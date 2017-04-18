@@ -2,7 +2,6 @@ package info.zadnjipozdrav.zadnjipozdrav;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.Toast;
 
 import java.util.Date;
 
@@ -75,7 +74,6 @@ public class Obituary {
     }
 
     public void setBirthDate(long birthDate) {
-
         mBirthDate = new Date(birthDate * 1000);
     }
 
@@ -131,8 +129,11 @@ public class Obituary {
         mPicture = picture;
     }
 
-    public void setmPicture(byte[] picture) {
-        mPicture = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+    public void setPicture(byte[] picture) {
+        if (picture != null) {
+            mPicture = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+        }
+        mPicture = null;
     }
 
     public String getReligion() {
