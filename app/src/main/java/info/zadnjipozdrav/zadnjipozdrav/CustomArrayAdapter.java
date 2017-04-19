@@ -2,10 +2,13 @@ package info.zadnjipozdrav.zadnjipozdrav;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,21 +31,34 @@ public class CustomArrayAdapter extends ArrayAdapter<Obituary>{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.obituary_row, parent, false);
-        TextView textViewNames = (TextView) rowView.findViewById(R.id.names);
-        TextView textViewDates = (TextView) rowView.findViewById(R.id.dates);
-        ImageView imageViewPicture = (ImageView) rowView.findViewById(R.id.picture);
-        textViewNames.setText(mValues.get(position).getName() + " ("
-                + mValues.get(position).getFathersName() + ") "
-                + mValues.get(position).getFamilyName());
+        TextView textViewNames = (TextView) rowView.findViewById(R.id.row_names);
+        TextView textViewDates = (TextView) rowView.findViewById(R.id.row_dates);
+        ImageView imageViewPicture = (ImageView) rowView.findViewById(R.id.row_picture);
+        FrameLayout frame = (FrameLayout) rowView.findViewById(R.id.row_frame);
+        Obituary obituary = mValues.get(position);
+        textViewNames.setText(obituary.getName() + " (" + obituary.getFathersName() + ") " + obituary.getFamilyName());
 
-        textViewDates.setText(mDateFormat.format(mValues.get(position).getBirthDate())
+        textViewDates.setText(mDateFormat.format(obituary.getBirthDate())
                 + " - "
-                + mDateFormat.format(mValues.get(position).getDeathDate()));
+                + mDateFormat.format(obituary.getDeathDate()));
 
-        if (mValues.get(position).getPicture() == null) {
+        if (obituary.getPicture() == null) {
             imageViewPicture.setImageResource(R.mipmap.ic_launcher_round);
         } else {
             imageViewPicture.setImageBitmap(mValues.get(position).getPicture());
+        }
+
+        switch (obituary.getReligion()) {
+            case 1:
+                frame.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.row_green, null));
+                break;
+            case 2:
+            case 3:
+                frame.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.row_black, null));
+                break;
+            case 4:
+                frame.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.row_blue, null));
+                break;
         }
 
         return rowView;

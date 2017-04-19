@@ -33,6 +33,7 @@ public class DataSource {
     private String[] mCemeteryColumns = {
             DatabaseHelper.COL_CE_ID,
             DatabaseHelper.COL_CE_NAME,
+            DatabaseHelper.COL_CE_ADDRESS,
             DatabaseHelper.COL_CE_LAT,
             DatabaseHelper.COL_CE_LON};
 
@@ -55,7 +56,7 @@ public class DataSource {
     public Obituary createObituary(String name, String familyName, String fathersName,
                                    String maidenName, long birthDate, long deathDate, String text,
                                    long funeralDate, long funeralTime, byte[] picture,
-                                   String religion, long cemeteryId, long boroughId) {
+                                   int religion, long cemeteryId, long boroughId) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COL_OB_NAME, name);
         values.put(DatabaseHelper.COL_OB_FAMILYNAME, familyName);
@@ -129,7 +130,7 @@ public class DataSource {
     }
 
     public List<Obituary> getAllObituaries() {
-        List<Obituary> obituaries = new ArrayList<Obituary>();
+        List<Obituary> obituaries = new ArrayList<>();
         Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_OBITUARIES, mObituaryColumns, null,
                 null, null, null, null);
 
@@ -157,7 +158,7 @@ public class DataSource {
         obituary.setFuneralDate(cursor.getLong(8));
         obituary.setFuneralTime(cursor.getLong(9));
         obituary.setPicture(cursor.getBlob(10));
-        obituary.setReligion(cursor.getString(11));
+        obituary.setReligion(cursor.getInt(11));
         obituary.setCemetery(getCemetery(cursor.getLong(12)));
         obituary.setBorough(getBorough(cursor.getLong(13)));
 
@@ -169,8 +170,8 @@ public class DataSource {
         cemetery.setId(cursor.getLong(0));
         cemetery.setName(cursor.getString(1));
         cemetery.setAddress(cursor.getString(2));
-        cemetery.setLat(cursor.getLong(3));
-        cemetery.setLon(cursor.getLong(4));
+        cemetery.setLat(cursor.getDouble(3));
+        cemetery.setLon(cursor.getDouble(4));
 
         return cemetery;
     }

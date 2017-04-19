@@ -19,7 +19,7 @@ public class Obituary {
     private Date mFuneralDate;
     private Date mFuneralTime;
     private Bitmap mPicture;
-    private String mReligion;
+    private int mReligion;
     private Cemetery mCemetery;
     private Borough mBorough;
 
@@ -134,11 +134,11 @@ public class Obituary {
         mPicture = null;
     }
 
-    public String getReligion() {
+    public int getReligion() {
         return mReligion;
     }
 
-    public void setReligion(String religion) {
+    public void setReligion(int religion) {
         mReligion = religion;
     }
 

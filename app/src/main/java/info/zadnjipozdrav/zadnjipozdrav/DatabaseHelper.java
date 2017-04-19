@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_OB_FUNERALDATE + " integer not null, "
             + COL_OB_FUNERALTIME + " text not null, "
             + COL_OB_PICTURE + " blob, "
-            + COL_OB_RELIGION + " text, "
+            + COL_OB_RELIGION + " integer, "
             + COL_OB_CEMETERY_ID + " integer, "
             + COL_OB_BOROUGH_ID + " integer"
             + ");";

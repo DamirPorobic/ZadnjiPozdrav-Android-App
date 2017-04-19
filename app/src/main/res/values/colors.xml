@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="row_default">#FFFFFF</color>
+    <color name="row_green">#22b105</color>
+    <color name="row_black">#000000</color>
+    <color name="row_blue">#123dea</color>
 </resources>

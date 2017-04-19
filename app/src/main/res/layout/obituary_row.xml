@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_frame"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:contentDescription="picture"
-        android:src="@mipmap/ic_launcher" >
-    </ImageView>
+    android:layout_height="wrap_content"
+    android:background="@color/row_default">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:background="@color/row_default">
 
-        <TextView
-            android:id="@+id/names"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_weight="1"
-            android:lines="1"
-            android:text="Test Test"
-            android:textSize="20sp">
-        </TextView>
+        <ImageView
+            android:id="@+id/row_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="picture"
+            android:src="@mipmap/ic_launcher" >
+        </ImageView>
 
-        <TextView
-            android:id="@+id/dates"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_weight="1"
-            android:lines="1"
-            android:text="123 - 345"
-            android:textSize="14sp">
-        </TextView>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/row_names"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="Test Test"
+                android:textSize="20sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/row_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="123 - 345"
+                android:textSize="14sp">
+            </TextView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
