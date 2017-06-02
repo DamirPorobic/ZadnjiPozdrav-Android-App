@@ -2,7 +2,6 @@ package info.zadnjipozdrav.zadnjipozdrav;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;

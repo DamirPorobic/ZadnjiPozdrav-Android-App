@@ -8,153 +8,154 @@ import java.util.Date;
 
 public class Obituary {
 
-    private long mId;
-    private String mName;
-    private String mFamilyName;
-    private String mFathersName;
-    private String mMaidenName;
-    private Date mBirthDate;
-    private Date mDeathDate;
-    private String mText;
-    private Date mFuneralDate;
-    private Date mFuneralTime;
-    private Bitmap mPicture;
-    private int mReligion;
-    private Cemetery mCemetery;
-    private Borough mBorough;
+    private long id;
+    private String name;
+    private String familyName;
+    private String fathersName;
+    private String maidenName;
+    private Date birthDate;
+    private Date deathDate;
+    private String text;
+    private Date funeralDate;
+    private Date funeralTime;
+    private Bitmap picture;
+    private int religion;
+    private Cemetery cemetery;
+    private Borough borough;
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getFamilyName() {
-        return mFamilyName;
+        return familyName;
     }
 
     public void setFamilyName(String familyName) {
-        mFamilyName = familyName;
+        this.familyName = familyName;
     }
 
     public String getFathersName() {
-        return mFathersName;
+        return fathersName;
     }
 
     public void setFathersName(String fathersName) {
-        mFathersName = fathersName;
+        this.fathersName = fathersName;
     }
 
     public String getMaidenName() {
-        return mMaidenName;
+        return maidenName;
     }
 
     public void setMaidenName(String maidenName) {
-        mMaidenName = maidenName;
+        this.maidenName = maidenName;
     }
 
     public Date getBirthDate() {
-        return mBirthDate;
+        return birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
-        mBirthDate = birthDate;
+        this.birthDate = birthDate;
     }
 
     public void setBirthDate(long birthDate) {
-        mBirthDate = new Date(birthDate * 1000);
+        this.birthDate = new Date(birthDate * 1000);
     }
 
     public Date getDeathDate() {
-        return mDeathDate;
+        return deathDate;
     }
 
     public void setDeathDate(Date deathDate) {
-        mDeathDate = deathDate;
+        this.deathDate = deathDate;
     }
 
     public void setDeathDate(long deathDate) {
-        mDeathDate = new Date(deathDate * 1000);
+        this.deathDate = new Date(deathDate * 1000);
     }
 
     public String getText() {
-        return mText;
+        return text;
     }
 
     public void setText(String text) {
-        mText = text;
+        this.text = text;
     }
 
     public Date getFuneralDate() {
-        return mFuneralDate;
+        return funeralDate;
     }
 
     public void setFuneralDate(Date funeralDateAndTime) {
-        mFuneralDate = funeralDateAndTime;
+        funeralDate = funeralDateAndTime;
     }
 
     public void setFuneralDate(long funeralDateAndTime) {
-        mFuneralDate = new Date(funeralDateAndTime * 1000);
+        funeralDate = new Date(funeralDateAndTime * 1000);
     }
 
     public Date getFuneralTime() {
-        return mFuneralTime;
+        return funeralTime;
     }
 
     public void setFuneralTime(Date funeralTime) {
-        mFuneralTime = funeralTime;
+        this.funeralTime = funeralTime;
     }
 
     public void setFuneralTime(long funeralTime) {
-        mFuneralTime = new Date(funeralTime * 1000);
+        this.funeralTime = new Date(funeralTime * 1000);
     }
 
     public Bitmap getPicture() {
-        return mPicture;
+        return picture;
     }
 
     public void setPicture(Bitmap picture) {
-        mPicture = picture;
+        this.picture = picture;
     }
 
     public void setPicture(byte[] picture) {
         if (picture != null) {
-            mPicture = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+            this.picture = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+        } else {
+            this.picture = null;
         }
-        mPicture = null;
     }
 
     public int getReligion() {
-        return mReligion;
+        return religion;
     }
 
     public void setReligion(int religion) {
-        mReligion = religion;
+        this.religion = religion;
     }
 
     public Cemetery getCemetery() {
-        return mCemetery;
+        return cemetery;
     }
 
     public void setCemetery(Cemetery cemetery) {
-        mCemetery = cemetery;
+        this.cemetery = cemetery;
     }
 
     public Borough getBorough() {
-        return mBorough;
+        return borough;
     }
 
     public void setBorough(Borough borough) {
-        mBorough = borough;
+        this.borough = borough;
     }
 }

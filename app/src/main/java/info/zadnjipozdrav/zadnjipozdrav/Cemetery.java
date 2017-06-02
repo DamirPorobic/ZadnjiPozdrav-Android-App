@@ -2,49 +2,49 @@ package info.zadnjipozdrav.zadnjipozdrav;
 
 public class Cemetery {
 
-    private long mId;
-    private String mName;
-    private String mAddress;
-    private double mLat;
-    private double mLon;
+    private long id;
+    private String name;
+    private String address;
+    private double lat;
+    private double lon;
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getAddress() {
-        return mAddress;
+        return address;
     }
 
     public void setAddress(String address) {
-        mAddress = address;
+        this.address = address;
     }
 
     public double getLat() {
-        return mLat;
+        return lat;
     }
 
     public void setLat(double lat) {
-        mLat = lat;
+        this.lat = lat;
     }
 
     public double getLon() {
-        return mLon;
+        return lon;
     }
 
     public void setLon(double lon) {
-        mLon = lon;
+        this.lon = lon;
     }
 }

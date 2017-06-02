@@ -3,22 +3,22 @@ package info.zadnjipozdrav.zadnjipozdrav;
 
 public class Borough {
 
-    private long mId;
-    private String mName;
+    private long id;
+    private String name;
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 }

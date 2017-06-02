@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Zadnji Pozdrav</string>
+    <string name="url_opstine">http://www.zadnjipozdrav.info/api/opstina</string>
+    <string name="url_groblja">http://www.zadnjipozdrav.info/api/groblja</string>
+    <string name="url_citulje">http://www.zadnjipozdrav.info/api/citulja</string>
     <string name="date_format">dd.MM.yyyy</string>
     <string name="time_format">mm:HH</string>
 </resources>
