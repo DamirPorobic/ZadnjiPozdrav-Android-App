@@ -68,7 +68,7 @@ public class DataSource {
      * @param funeralTime  Time of funeral.
      * @param picture      Picture of the person.
      * @param religion     ID of religion, to be populated from other table.
-     * @param cemeteryId   ID of cementery where the funeral will take place.
+     * @param cemeteryId   ID of cemetery where the funeral will take place.
      * @param boroughId    ID of borough where the person was registered as death.
      * @return             When successful, returns the ID of the new row, otherwise returns -1.
      */

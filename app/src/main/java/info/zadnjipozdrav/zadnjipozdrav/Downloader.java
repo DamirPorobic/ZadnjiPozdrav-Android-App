@@ -44,7 +44,7 @@ public class Downloader extends AsyncTask<Void, Void, Void> {
         // For every URL, we first try to get the JSON from web server, then we try to parse it into
         // database.
         getBoroughs(getJson(context.getResources().getString(R.string.url_opstine)));
-        getCementery(getJson(context.getResources().getString(R.string.url_groblja)));
+        getCemetery(getJson(context.getResources().getString(R.string.url_groblja)));
         getObituary(getJson(context.getResources().getString(R.string.url_citulje)));
 
         return null;
@@ -124,10 +124,10 @@ public class Downloader extends AsyncTask<Void, Void, Void> {
     }
 
     /**
-     * Tries to parse a List of JSON Objects into Cementery entries in SQLite database.
-     * @param list  List of JSON objects of type Cementery that will be parsed into database
+     * Tries to parse a List of JSON Objects into Cemetery entries in SQLite database.
+     * @param list  List of JSON objects of type Cemetery that will be parsed into database
      */
-    private void getCementery(List<JSONObject> list) {
+    private void getCemetery(List<JSONObject> list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -142,7 +142,7 @@ public class Downloader extends AsyncTask<Void, Void, Void> {
                         o.getDouble("longitude")
                 );
             } catch (JSONException e) {
-                Log.e("getCementery", "Failed to parse JSON object: " + e.toString());
+                Log.e("getCemetery", "Failed to parse JSON object: " + e.toString());
             }
         }
         datasource.close();
