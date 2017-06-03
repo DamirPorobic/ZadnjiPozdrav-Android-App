@@ -1,11 +1,11 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final Obituary item = (Obituary) parent.getItemAtPosition(position);
                 if (item != null) {
-                    Toast.makeText(MainActivity.this, item.getName(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, DetailsView.class);
+                    i.putExtra("obituary_id", item.getId());
+                    startActivity(i);
                 }
             }
 

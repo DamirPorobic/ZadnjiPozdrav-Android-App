@@ -43,9 +43,9 @@ public class Downloader extends AsyncTask<Void, Void, Void> {
 
         // For every URL, we first try to get the JSON from web server, then we try to parse it into
         // database.
-        getBoroughs(getJson(context.getResources().getString(R.string.url_opstine)));
-        getCemetery(getJson(context.getResources().getString(R.string.url_groblja)));
-        getObituary(getJson(context.getResources().getString(R.string.url_citulje)));
+//        getBoroughs(getJson(context.getResources().getString(R.string.url_opstine)));
+//        getCemetery(getJson(context.getResources().getString(R.string.url_groblja)));
+//        getObituary(getJson(context.getResources().getString(R.string.url_citulje)));
 
         return null;
     }
