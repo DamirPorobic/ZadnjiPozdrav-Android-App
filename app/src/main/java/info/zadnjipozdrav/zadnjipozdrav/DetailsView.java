@@ -111,7 +111,8 @@ public class DetailsView extends AppCompatActivity {
             return;
         }
 
-        Uri uri = Uri.parse("geo:" + cemetery.getLat() + "," + cemetery.getLon() + "?q=" + Uri.encode(cemetery.getName()));
+        Uri uri = Uri.parse("geo:" + cemetery.getLat() + "," + cemetery.getLon() + "?q="
+                + Uri.encode(cemetery.getName()));
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
         // Check if google mpas is installed.
@@ -126,14 +127,18 @@ public class DetailsView extends AppCompatActivity {
         }
 
         Intent intent = new Intent(Intent.ACTION_EDIT);
-//        intent.setType("vnd.android.cursor.item/event");
+        intent.setType("vnd.android.cursor.item/event");
         intent.putExtra(CalendarContract.Events.DTSTART, obituary.getFuneralDate().getTime());
-        intent.putExtra(CalendarContract.Events.DTEND, obituary.getFuneralDate().getTime() + 60 * 60 * 1000);
-        intent.putExtra(CalendarContract.Events.TITLE, obituary.getName() + " " + obituary.getFamilyName() + " zadnji pozdrav.");
+        intent.putExtra(CalendarContract.Events.DTEND, obituary.getFuneralDate().getTime()
+                + 60 * 60 * 1000);
+        intent.putExtra(CalendarContract.Events.TITLE, obituary.getName()
+                + " " + obituary.getFamilyName()
+                + " " + getString(R.string.calenadr_entry_suffix));
 
         Cemetery cemetery = obituary.getCemetery();
         if (cemetery != null) {
-            intent.putExtra(CalendarContract.Events.EVENT_LOCATION, cemetery.getName() + ", " + cemetery.getAddress());
+            intent.putExtra(CalendarContract.Events.EVENT_LOCATION, cemetery.getName() + ", "
+                    + cemetery.getAddress());
         }
         startActivity(intent);
     }

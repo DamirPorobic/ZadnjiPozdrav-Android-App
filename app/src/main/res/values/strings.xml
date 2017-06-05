@@ -8,4 +8,8 @@
     <string name="time_format">mm:HH</string>
     <string name="obituary_id">obituary_id</string>
     <string name="loading_text">Ucitavanje...</string>
+    <string name="calenadr_entry_suffix">zadnji pozdrav.</string>
+    <string name="refresh_menu">Osvježi</string>
+    <string name="settings_menu">Podesavanja</string>
+    <string name="about_menu">O nama</string>
 </resources>
