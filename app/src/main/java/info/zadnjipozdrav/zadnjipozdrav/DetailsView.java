@@ -36,7 +36,7 @@ public class DetailsView extends AppCompatActivity {
             timeFormat = new SimpleDateFormat(getResources().getString(R.string.time_format));
 
             dataSource.open();
-            obituary = dataSource.getObituary(extras.getLong("obituary_id"));
+            obituary = dataSource.getObituary(extras.getLong(getResources().getString(R.string.obituary_id)));
 
         } finally {
             dataSource.close();
