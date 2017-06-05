@@ -1,6 +1,5 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
-
 import android.content.Context;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
@@ -15,21 +14,20 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CustomArrayAdapter extends ArrayAdapter<Obituary>{
-    private final Context context;
     private final List<Obituary> values;
+    private final LayoutInflater layoutInflater;
     private final SimpleDateFormat dateFormat;
 
     public CustomArrayAdapter(Context context, List<Obituary> values) {
         super(context, -1, values);
-        this.context = context;
         this.values = values;
-        dateFormat = new SimpleDateFormat(this.context.getString(R.string.date_format));
+        dateFormat = new SimpleDateFormat(context.getString(R.string.date_format));
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.obituary_row, parent, false);
+        View rowView = layoutInflater.inflate(R.layout.obituary_row, parent, false);
         TextView textViewNames = (TextView) rowView.findViewById(R.id.row_names);
         TextView textViewDates = (TextView) rowView.findViewById(R.id.row_dates);
         ImageView imageViewPicture = (ImageView) rowView.findViewById(R.id.row_picture);
@@ -49,14 +47,14 @@ public class CustomArrayAdapter extends ArrayAdapter<Obituary>{
 
         switch (obituary.getReligion()) {
             case 1:
-                frame.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.row_green, null));
+                frame.setBackgroundColor(ResourcesCompat.getColor(parent.getResources(), R.color.row_green, null));
                 break;
             case 2:
             case 3:
-                frame.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.row_black, null));
+                frame.setBackgroundColor(ResourcesCompat.getColor(parent.getResources(), R.color.row_black, null));
                 break;
             case 4:
-                frame.setBackgroundColor(ResourcesCompat.getColor(context.getResources(), R.color.row_blue, null));
+                frame.setBackgroundColor(ResourcesCompat.getColor(parent.getResources(), R.color.row_blue, null));
                 break;
         }
 

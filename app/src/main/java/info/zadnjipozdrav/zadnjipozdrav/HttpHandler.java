@@ -1,7 +1,6 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

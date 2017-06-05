@@ -1,6 +1,8 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,14 +13,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = (ListView) findViewById(R.id.obituary_list);
+        listView = (ListView) findViewById(R.id.obituary_list);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        refreshList(listView);
+        refreshList();
     }
 
     @Override
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.refresh_menu:
-                refreshList(null);
+                refreshList();
                 return true;
             case R.id.settings_menu:
                 return true;
@@ -60,12 +65,63 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void refreshList(ListView list) {
-        if (list == null) {
-            list = (ListView) findViewById(R.id.obituary_list);
+    public void refreshList() {
+        Downloader downloader = new Downloader();
+        downloader.execute();
+    }
+
+    /**
+     * Async Task for downloading JSON strings and parsing them into database, the operation is
+     * running in the background.
+     */
+    public class Downloader extends AsyncTask<Void, Void, Void> {
+        private DataSource dataSource;
+        private ProgressDialog dialog;
+
+        /**
+         * Prior to executing we show a progress dialog to inform the user that something is heppening.
+         */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dataSource = new DataSource(MainActivity.this);
+
+            // Showing progress dialog
+            dialog = new ProgressDialog(MainActivity.this);
+            dialog.setMessage(MainActivity.this.getString(R.string.loading_text));
+            dialog.setCancelable(false);
+            dialog.show();
         }
 
-        Downloader downloader = new Downloader(this, list);
-        downloader.execute();
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            // For every URL, we first try to get the JSON from web server, then we try to parse it into
+            // database.
+            DownloadHelper dh = new DownloadHelper();
+            dh.getBoroughs(dh.getJson(MainActivity.this.getString(R.string.url_opstine)), dataSource);
+            dh.getCemetery(dh.getJson(MainActivity.this.getString(R.string.url_groblja)), dataSource);
+            dh.getObituary(dh.getJson(MainActivity.this.getString(R.string.url_citulje)), dataSource);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            // Dismiss the progress dialog
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+
+            // Open Database and load all Obituaries from the SQLite database into the listview
+            dataSource.open();
+
+            List<Obituary> values = dataSource.getAllObituaries();
+            CustomArrayAdapter adapter = new CustomArrayAdapter(MainActivity.this, values);
+            listView.setAdapter(adapter);
+
+            dataSource.close();
+        }
     }
 }
