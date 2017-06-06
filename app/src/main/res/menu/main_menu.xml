@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/refresh_menu"
-        android:title="@string/refresh_menu"
+        android:title="@string/menu_refresh"
         android:icon="@mipmap/ic_refresh"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/settings_menu"
-        android:title="@string/settings_menu" />
+        android:title="@string/menu_settings" />
     <item android:id="@+id/about_menu"
-        android:title="@string/about_menu" />
+        android:title="@string/menu_about" />
 </menu>

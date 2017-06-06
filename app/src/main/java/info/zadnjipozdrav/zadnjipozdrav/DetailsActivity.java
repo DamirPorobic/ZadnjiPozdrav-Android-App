@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
-public class DetailsView extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity {
     private Obituary obituary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_view);
+        setContentView(R.layout.activity_details);
 
 
         Bundle extras = getIntent().getExtras();
@@ -36,7 +36,7 @@ public class DetailsView extends AppCompatActivity {
             timeFormat = new SimpleDateFormat(getResources().getString(R.string.time_format));
 
             dataSource.open();
-            obituary = dataSource.getObituary(extras.getLong(getResources().getString(R.string.obituary_id)));
+            obituary = dataSource.getObituary(extras.getLong(getResources().getString(R.string.main_obituary_id)));
 
         } finally {
             dataSource.close();
@@ -133,7 +133,7 @@ public class DetailsView extends AppCompatActivity {
                 + 60 * 60 * 1000);
         intent.putExtra(CalendarContract.Events.TITLE, obituary.getName()
                 + " " + obituary.getFamilyName()
-                + " " + getString(R.string.calenadr_entry_suffix));
+                + " " + getString(R.string.details_calendar_entry_suffix));
 
         Cemetery cemetery = obituary.getCemetery();
         if (cemetery != null) {

@@ -1,15 +1,30 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">Zadnji Pozdrav</string>
-    <string name="title_activity_details_view">DetailsView</string>
+    <string name="date_format">dd.MM.yyyy</string>
+    <string name="time_format">mm:HH</string>
+    <string name="support_email">podrska@zadnjipozdrav.info</string>
+    <!-- Main Activity -->
+    <string name="main_obituary_id">obituary_id</string>
+    <string name="main_loading_text">Ucitavanje&#8230;</string>
+    <!-- URLs -->
     <string name="url_opstine">http://www.zadnjipozdrav.info/api/opstina</string>
     <string name="url_groblja">http://www.zadnjipozdrav.info/api/groblja</string>
     <string name="url_citulje">http://www.zadnjipozdrav.info/api/citulja</string>
-    <string name="date_format">dd.MM.yyyy</string>
-    <string name="time_format">mm:HH</string>
-    <string name="obituary_id">obituary_id</string>
-    <string name="loading_text">Ucitavanje...</string>
-    <string name="calenadr_entry_suffix">zadnji pozdrav.</string>
-    <string name="refresh_menu">Osvježi</string>
-    <string name="settings_menu">Podesavanja</string>
-    <string name="about_menu">O nama</string>
+    <!-- Main Menu -->
+    <string name="menu_refresh">Osvježi</string>
+    <string name="menu_settings">Postavke</string>
+    <string name="menu_about">O nama</string>
+    <!-- Settings Activity -->
+    <string name="settings_title">Postavke</string>
+    <!-- Details Activity -->
+    <string name="details_title">Pregled</string>
+    <string name="details_calendar_entry_suffix">zadnji pozdrav.</string>
+    <!-- About Activity -->
+    <string name="about_title">O Nama</string>
+    <string name="about_text">Mozete nas kontaktirati putem Emaila: <b>podrska@zadnjipozdrav.info</b></string>
+    <string name="about_email_button">E-Mail</string>
+    <string name="about_no_email_client_text">Nema instaliranih Email aplikacija za slanje.</string>
+    <!-- Select Filter Activity -->
+    <string name="select_filter_title">Opstine za prikaz</string>
 </resources>

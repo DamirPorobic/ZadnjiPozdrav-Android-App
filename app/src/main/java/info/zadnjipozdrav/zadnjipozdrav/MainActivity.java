@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final Obituary item = (Obituary) parent.getItemAtPosition(position);
                 if (item != null) {
-                    Intent i = new Intent(MainActivity.this, DetailsView.class);
-                    i.putExtra(getResources().getString(R.string.obituary_id), item.getId());
+                    Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                    i.putExtra(getResources().getString(R.string.main_obituary_id), item.getId());
                     startActivity(i);
                 }
             }
@@ -57,24 +57,38 @@ public class MainActivity extends AppCompatActivity {
                 refreshList();
                 return true;
             case R.id.settings_menu:
+                runActivity(SettingsActivity.class);
                 return true;
             case R.id.about_menu:
+                runActivity(AboutActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void refreshList() {
+    /**
+     * Runs downloader and updates list view with latest obituaries.
+     */
+    private void refreshList() {
         Downloader downloader = new Downloader();
         downloader.execute();
+    }
+
+    /**
+     * Creates activity of provided class and runs it as a child of this class.
+     * @param cls  Class of activity that should be run.
+     */
+    private void runActivity(Class<?> cls) {
+        Intent i = new Intent(MainActivity.this, cls);
+        startActivity(i);
     }
 
     /**
      * Async Task for downloading JSON strings and parsing them into database, the operation is
      * running in the background.
      */
-    public class Downloader extends AsyncTask<Void, Void, Void> {
+    private class Downloader extends AsyncTask<Void, Void, Void> {
         private DataSource dataSource;
         private ProgressDialog dialog;
 
@@ -88,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Showing progress dialog
             dialog = new ProgressDialog(MainActivity.this);
-            dialog.setMessage(MainActivity.this.getString(R.string.loading_text));
+            dialog.setMessage(MainActivity.this.getString(R.string.main_loading_text));
             dialog.setCancelable(false);
             dialog.show();
         }

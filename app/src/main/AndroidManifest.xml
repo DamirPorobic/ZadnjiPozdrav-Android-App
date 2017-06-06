@@ -21,10 +21,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsView"
-            android:label="@string/title_activity_details_view"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:name=".DetailsActivity"
+            android:label="@string/details_title"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about_title"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_title"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SelectFilterActivity"
+            android:label="@string/select_filter_title"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

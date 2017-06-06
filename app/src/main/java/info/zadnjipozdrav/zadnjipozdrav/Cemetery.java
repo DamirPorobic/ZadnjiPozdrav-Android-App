@@ -47,4 +47,9 @@ public class Cemetery {
     public void setLon(double lon) {
         this.lon = lon;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
