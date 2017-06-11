@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             // For every URL, we first try to get the JSON from web server, then we try to parse it into
             // database.
             DownloadHelper dh = new DownloadHelper();
-            dh.getBoroughs(dh.getJson(MainActivity.this.getString(R.string.url_opstine)), dataSource);
             dh.getCemetery(dh.getJson(MainActivity.this.getString(R.string.url_groblja)), dataSource);
             dh.getObituary(dh.getJson(MainActivity.this.getString(R.string.url_citulje)), dataSource);
 
