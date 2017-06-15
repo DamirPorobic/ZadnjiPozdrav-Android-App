@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="@string/settings_notify_enable_key"
+        android:title="@string/settings_notify_enable_title"
+        android:summary="@string/settings_notify_enable_description"
+        android:defaultValue="true" />
+    <ListPreference
+        android:dependency="@string/settings_notify_enable_key"
+        android:key="@string/settings_notify_interval_key"
+        android:title="@string/settings_notify_interval_title"
+        android:dialogTitle="@string/settings_notify_interval_dialogTitle" />
+    <MultiSelectListPreference
+        android:key="@string/settings_filter_borough_key"
+        android:title="@string/settings_filter_borough_title"
+        android:dialogTitle="@string/settings_filter_borough_dialogTitle" />
+</PreferenceScreen>

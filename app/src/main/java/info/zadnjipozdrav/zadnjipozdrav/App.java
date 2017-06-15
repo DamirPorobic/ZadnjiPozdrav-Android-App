@@ -1,22 +1,22 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
-import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class App extends Application {
-    private static final String FIRST_RUN = "info.zadnjipozdrav.first_run";
+    private static final String FIRST_RUN = "app_first_run";
+    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
 
         /**
          * Only on first run, make sure we start downloader that downloads borough entries, we need
@@ -29,22 +29,16 @@ public class App extends Application {
             Downloader d = new Downloader();
             d.execute();
 
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(this, AlarmReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-
-            String intervalString = getString(R.string.notify_interval);
-            int interval = prefs.getInt(intervalString, 1000 * 60);
-
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
-                    SystemClock.elapsedRealtime() + interval,
-                    interval,
-                    pendingIntent);
+            AlarmReceiver.enableNotification(this, true, NotifyInterval.OneHour.getValue());
 
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(FIRST_RUN, false);
             editor.apply();
         }
+    }
+
+    public static Context getContext() {
+        return context;
     }
 
     private class Downloader extends AsyncTask<Void, Void, Void> {
