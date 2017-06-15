@@ -30,10 +30,6 @@
             android:name=".AboutActivity"
             android:label="@string/about_title"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".SelectFilterActivity"
-            android:label="@string/select_filter_title"
-            android:theme="@style/AppTheme" />
 
         <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".BootReceiver">

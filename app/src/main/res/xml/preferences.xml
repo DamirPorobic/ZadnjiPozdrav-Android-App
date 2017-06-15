@@ -9,8 +9,9 @@
         android:dependency="@string/settings_notify_enable_key"
         android:key="@string/settings_notify_interval_key"
         android:title="@string/settings_notify_interval_title"
-        android:dialogTitle="@string/settings_notify_interval_dialogTitle" />
-    <MultiSelectListPreference
+        android:dialogTitle="@string/settings_notify_interval_dialogTitle"
+        android:summary="%s"/>
+    <info.zadnjipozdrav.zadnjipozdrav.CustomMultiSelectListPreference
         android:key="@string/settings_filter_borough_key"
         android:title="@string/settings_filter_borough_title"
         android:dialogTitle="@string/settings_filter_borough_dialogTitle" />

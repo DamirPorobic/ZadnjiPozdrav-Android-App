@@ -1,13 +1,10 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
 import android.app.Application;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class App extends Application {
     private static final String FIRST_RUN = "app_first_run";
@@ -63,16 +60,6 @@ public class App extends Application {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
-            Intent intent = new Intent(App.this, SelectFilterActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(App.this, 22, intent, 0);
-            try {
-                pendingIntent.send();
-            }
-            catch (PendingIntent.CanceledException e) {
-                Log.e("App:onPostExecute", "Failed to start SelectFilterActivity: " + e.getMessage());
-            }
         }
     }
 }

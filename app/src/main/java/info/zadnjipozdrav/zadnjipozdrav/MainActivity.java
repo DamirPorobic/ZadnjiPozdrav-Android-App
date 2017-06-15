@@ -1,11 +1,14 @@
 package info.zadnjipozdrav.zadnjipozdrav;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
@@ -38,6 +42,29 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        // Check if any boroughs have been selected as filter, if not, ask the user if he wants to
+        // select it in a dialog, if he responds with yes, open settings and let him choose.
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        Set<String> selections = preferences.getStringSet(getString(R.string.settings_filter_borough_key), null);
+        if (selections == null || selections.size() == 0) {
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int response) {
+                    if (response == DialogInterface.BUTTON_POSITIVE) {
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        intent.putExtra(SettingsActivity.SETUP_FILTER, true);
+                        startActivity(intent);
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.main_dialog_addFilter_question));
+            builder.setPositiveButton(getString(R.string.main_dialog_addFilter_yes), dialogClickListener);
+            builder.setNegativeButton(getString(R.string.main_dialog_addFilter_no), dialogClickListener);
+            builder.show();
+        }
 
         refreshList();
     }

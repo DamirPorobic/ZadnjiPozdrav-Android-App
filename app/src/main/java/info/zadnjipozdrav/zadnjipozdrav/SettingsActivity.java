@@ -3,7 +3,6 @@ package info.zadnjipozdrav.zadnjipozdrav;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
-import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.view.MenuItem;
 import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
+    public static final String SETUP_FILTER = "setup_filter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // Display the fragment as the main content.
-        getFragmentManager().beginTransaction().replace(android.R.id.content,
-                new PrefsFragment()).commit();
+        PrefsFragment fragment = new PrefsFragment();
+
+        // Check if any bundle was provided, in this bundle we eventually send information for the
+        // fragment to show the filter selection.
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+        getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
     }
 
     @Override
@@ -79,15 +86,15 @@ public class SettingsActivity extends AppCompatActivity {
             dataSource.close();
 
             // Populate multiselection list with boroughs that we use as filter.
-            MultiSelectListPreference multiListBoroughs = (MultiSelectListPreference) findPreference(getString(R.string.settings_filter_borough_key));
-            CharSequence[] entriesBorough = new CharSequence[list.size()];
-            CharSequence[] valuesBorough = new CharSequence[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                entriesBorough[i] = list.get(i).getName();
-                valuesBorough[i] = Long.toString(list.get(i).getId());
+            CustomMultiSelectListPreference multiListBoroughs = (CustomMultiSelectListPreference) findPreference(getString(R.string.settings_filter_borough_key));
+            multiListBoroughs.loadBoroughs(list);
+
+            // when a bundle was provided and the setup_filter is true, then open the filter
+            // selection right away.
+            Bundle bundle = getArguments();
+            if (bundle != null && bundle.getBoolean(SETUP_FILTER)) {
+                multiListBoroughs.show();
             }
-            multiListBoroughs.setEntries(entriesBorough);
-            multiListBoroughs.setEntryValues(valuesBorough);
         }
     }
 }

@@ -10,6 +10,9 @@
     <!-- Main Activity -->
     <string name="main_obituary_id">obituary_id</string>
     <string name="main_loading_text">Ucitavanje&#8230;</string>
+    <string name="main_dialog_addFilter_question">Niste odabrali opstinu/e za prikaz. Zelite li sada odabrati?</string>
+    <string name="main_dialog_addFilter_yes">Da</string>
+    <string name="main_dialog_addFilter_no">Ne</string>
     <!-- URLs -->
     <string name="url_opstine">http://www.zadnjipozdrav.info/api/opstina</string>
     <string name="url_groblja">http://www.zadnjipozdrav.info/api/groblja</string>
