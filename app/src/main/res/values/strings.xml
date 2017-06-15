@@ -3,16 +3,32 @@
     <string name="app_name">Zadnji Pozdrav</string>
     <string name="date_format">dd.MM.yyyy</string>
     <string name="time_format">mm:HH</string>
-    <string name="support_email">podrska@zadnjipozdrav.info</string>
-    <string name="notify_interval">info.zadnjipozdrav.notify_interval</string>
     <string name="notify_message">Nove citulje su dostupne</string>
-    <string name="notify_enabled">notify_enabled</string>
     <!-- Main Activity -->
-    <string name="main_obituary_id">obituary_id</string>
-    <string name="main_loading_text">Ucitavanje&#8230;</string>
+    <string name="main_dialog_loading_text">Ucitavanje&#8230;</string>
     <string name="main_dialog_addFilter_question">Niste odabrali opstinu/e za prikaz. Zelite li sada odabrati?</string>
     <string name="main_dialog_addFilter_yes">Da</string>
     <string name="main_dialog_addFilter_no">Ne</string>
+    <!-- Settings Activity -->
+    <string name="settings_activity_title">Postavke</string>
+    <string name="settings_notify_enable_key">notify_enable_key</string>
+    <string name="settings_notify_enable_title">Notifikacije</string>
+    <string name="settings_notify_enable_description">Obavjesti me o novim cituljama.</string>
+    <string name="settings_notify_interval_key">notify_interval_key</string>
+    <string name="settings_notify_interval_title">Interval</string>
+    <string name="settings_notify_interval_dialogTitle">Odaberi interval</string>
+    <string name="settings_filter_borough_key">filter_borough_key</string>
+    <string name="settings_filter_borough_title">Opstine Filter</string>
+    <string name="settings_filter_borough_dialogTitle">Odaberi Opstine</string>
+    <!-- Details Activity -->
+    <string name="details_activity_title">Pregled</string>
+    <string name="details_calendar_entry_suffix">zadnji pozdrav.</string>
+    <!-- About Activity -->
+    <string name="about_activity_title">O Nama</string>
+    <string name="about_text">Mozete nas kontaktirati putem Emaila: <b>podrska@zadnjipozdrav.info</b></string>
+    <string name="about_email_button_text">E-Mail</string>
+    <string name="about_no_email_client_text">Nema instaliranih Email aplikacija za slanje.</string>
+    <string name="about_support_email">podrska@zadnjipozdrav.info</string>
     <!-- URLs -->
     <string name="url_opstine">http://www.zadnjipozdrav.info/api/opstina</string>
     <string name="url_groblja">http://www.zadnjipozdrav.info/api/groblja</string>
@@ -26,34 +42,4 @@
     <string name="notify_interval_OneHour">Sat</string>
     <string name="notify_interval_TwoHour">Dva Sata</string>
     <string name="notify_interval_OneDay">Dnevno</string>
-    <!-- Settings Activity -->
-    <string name="settings_activity_title">Postavke</string>
-    <string name="settings_notify_enable_key">notify_enable_key</string>
-    <string name="settings_notify_enable_title">Notifikacije</string>
-    <string name="settings_notify_enable_description">Obavjesti me o novim cituljama.</string>
-    <string name="settings_notify_interval_key">notify_interval_key</string>
-    <string name="settings_notify_interval_title">Interval</string>
-    <string name="settings_notify_interval_dialogTitle">Odaberi interval</string>
-    <string name="settings_filter_borough_key">filter_borough_key</string>
-    <string name="settings_filter_borough_title">Opstine Filter</string>
-    <string name="settings_filter_borough_dialogTitle">Odaberi Opstine</string>
-    <!-- Details Activity -->
-    <string name="details_title">Pregled</string>
-    <string name="details_calendar_entry_suffix">zadnji pozdrav.</string>
-    <!-- About Activity -->
-    <string name="about_title">O Nama</string>
-    <string name="about_text">Mozete nas kontaktirati putem Emaila: <b>podrska@zadnjipozdrav.info</b></string>
-    <string name="about_email_button">E-Mail</string>
-    <string name="about_no_email_client_text">Nema instaliranih Email aplikacija za slanje.</string>
-    <!-- Select Filter Activity -->
-    <string name="select_filter_title">Opstine za prikaz</string>
-    <string name="title_activity_settings">Settings</string>
-
-
-    <!-- TEST -->
-    <string-array name="myArray">
-        <item>one</item>
-        <item>two</item>
-        <item>three</item>
-    </string-array>
 </resources>

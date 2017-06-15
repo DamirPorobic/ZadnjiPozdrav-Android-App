@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 
 public class DetailsActivity extends AppCompatActivity {
+    public static final String OBITUARY_ID = "obituary_id";
     private Obituary obituary;
 
     @Override
@@ -36,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
             timeFormat = new SimpleDateFormat(getResources().getString(R.string.time_format));
 
             dataSource.open();
-            obituary = dataSource.getObituary(extras.getLong(getResources().getString(R.string.main_obituary_id)));
+            obituary = dataSource.getObituary(extras.getLong(OBITUARY_ID));
 
         } finally {
             dataSource.close();

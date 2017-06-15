@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 final Obituary item = (Obituary) parent.getItemAtPosition(position);
                 if (item != null) {
                     Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                    i.putExtra(getResources().getString(R.string.main_obituary_id), item.getId());
+                    i.putExtra(DetailsActivity.OBITUARY_ID, item.getId());
                     startActivity(i);
                 }
             }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Showing progress dialog
             dialog = new ProgressDialog(MainActivity.this);
-            dialog.setMessage(MainActivity.this.getString(R.string.main_loading_text));
+            dialog.setMessage(MainActivity.this.getString(R.string.main_dialog_loading_text));
             dialog.setCancelable(false);
             dialog.show();
         }

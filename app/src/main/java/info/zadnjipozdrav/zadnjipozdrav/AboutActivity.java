@@ -34,7 +34,7 @@ public class AboutActivity extends AppCompatActivity {
     public void onSendEmail(View view) {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.support_email)});
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.about_support_email)});
         try {
             startActivity(i);
         } catch (android.content.ActivityNotFoundException ex) {
